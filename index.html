@@ -128,6 +128,7 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
 .dl{font:600 13px var(--body);padding:8px 14px;border:1px solid var(--blue);color:var(--blue);text-decoration:none;white-space:nowrap}
 .dl:hover{background:var(--tint-blue)}
 @media print{
+  #gate{display:none!important}
   @page{size:338mm 190mm;margin:12mm 14mm}
   html{color-scheme:light}
   :root{--bg:#fff;--surface:#fff;--fg:#0f1f2e;--muted:#5b6b78;--line:#d8dfda;--green:#00843d;--green-deep:#00491f;--blue:#003594;--blue-deep:#001e62;--sky:#62b5e5;--acid:#65a812;--tint:#e6f2ea;--tint-blue:#e8eef9}
@@ -155,6 +156,21 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
 </style>
 </head>
 <body>
+
+<div id="gate" style="position:fixed;inset:0;z-index:99;background:var(--bg);display:grid;place-items:center;padding:16px">
+  <form id="gatef" style="width:min(360px,100%);background:var(--surface);border:1px solid var(--line);padding:28px;border-top:4px solid var(--green)">
+    <div style="font:700 22px/1 var(--display);margin-bottom:6px">JAKALA <span style="color:var(--muted);font-size:13px;font-weight:500">per</span> <span style="color:var(--green)">Gruppo BCC</span> <span style="color:var(--blue)">Iccrea</span></div>
+    <p style="margin:0 0 16px;color:var(--muted);font-size:13px">Documento riservato. Inserisci la password per continuare.</p>
+    <input id="gatep" type="password" autocomplete="current-password" placeholder="Password" style="width:100%;font:15px var(--body);padding:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);margin-bottom:10px">
+    <button class="btn" type="submit" style="width:100%">Entra</button>
+    <p id="gatee" style="margin:10px 0 0;color:#b3261e;font-size:13px" hidden>Password non corretta.</p>
+  </form>
+</div>
+<script>
+(function(){const H='aa23991a';function h(s){let x=0;for(const c of s)x=(x*31+c.charCodeAt(0))>>>0;return x.toString(16)}
+const g=document.getElementById('gate');try{if(sessionStorage.getItem('iccrea_ok')==='1')g.remove()}catch(e){}
+document.getElementById('gatef').addEventListener('submit',e=>{e.preventDefault();const v=document.getElementById('gatep').value;if(h(v)===H){try{sessionStorage.setItem('iccrea_ok','1')}catch(e){}g.remove()}else{document.getElementById('gatee').hidden=false}});})();
+</script>
 <div class="wrap">
 <header class="top">
   <div class="brands">
