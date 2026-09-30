@@ -128,25 +128,29 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
 .dl{font:600 13px var(--body);padding:8px 14px;border:1px solid var(--blue);color:var(--blue);text-decoration:none;white-space:nowrap}
 .dl:hover{background:var(--tint-blue)}
 @media print{
-  @page{size:A4;margin:14mm 12mm}
+  @page{size:338mm 190mm;margin:12mm 14mm}
   html{color-scheme:light}
   :root{--bg:#fff;--surface:#fff;--fg:#0f1f2e;--muted:#5b6b78;--line:#d8dfda;--green:#00843d;--green-deep:#00491f;--blue:#003594;--blue-deep:#001e62;--sky:#62b5e5;--acid:#65a812;--tint:#e6f2ea;--tint-blue:#e8eef9}
-  body{font-size:12.5px}
+  body{font-size:12.5px;line-height:1.45}
   nav.tabs,.toolbar,.dl,#toast{display:none!important}
+  header.top{padding-block:8px 10px}
   section{display:block!important;page-break-before:always}
   section[hidden]{display:block!important}
-  section#ctx{page-break-before:auto}
-  .wrap{max-width:none;padding-inline:0}
-  .hero{grid-template-columns:1.4fr 1fr}
-  .hero h1{font-size:30px}
-  .card,.demo,.fact,.quote,.qgrid li{break-inside:avoid}
+  .hero{padding-block:30px 10px;page-break-after:always;min-height:120mm;align-items:center}
+  .hero h1{font-size:44px}
+  h2{font-size:26px;margin-bottom:4px} h3{page-break-before:always;font-size:20px;margin-top:0;padding-top:4px}
+  .lead{margin-bottom:12px;font-size:14px}
+  .wrap{max-width:none;padding-inline:0;padding-block:0}
+  .card,.demo,.fact,.quote,.qgrid li,.band,.timeline,.kpi{break-inside:avoid}
+  .grid2,.grid3,.dim{break-inside:avoid}
   .grid3{grid-template-columns:repeat(3,1fr)!important}
   .kpi{grid-template-columns:repeat(4,1fr)}
+  .qgrid{grid-template-columns:1fr 1fr 1fr}
   .tscroll{overflow:visible;border:0}
-  table{font-size:10.5px} td,th{padding:5px 6px}
-  .logo{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  table{font-size:9.5px} td,th{padding:4px 6px}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   a{color:inherit;text-decoration:none}
+  footer{display:none}
 }
 </style>
 </head>
@@ -162,7 +166,7 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
 
 <div class="hero">
   <div>
-    <div class="eyebrow">Visibilità · Campagne · Misurazione</div>
+    <div class="eyebrow">AI Visibility · GEO · Campagne · Misurazione</div>
     <h1>La cultura dei territori, <em>trovata</em> anche dove oggi si cerca con l'AI.</h1>
     <p>Come rendere BCC Arte&amp;Cultura e le 112 BCC visibili nelle tre dimensioni di Google e nelle risposte dei modelli generativi, e come misurarlo con la stessa disciplina del media classico.</p>
   </div>
@@ -178,7 +182,8 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
   <button role="tab" aria-selected="true" data-t="ctx">Contesto</button>
   <button role="tab" aria-selected="false" data-t="search">Come si cerca oggi</button>
   <button role="tab" aria-selected="false" data-t="base">Dove siamo oggi</button>
-  <button role="tab" aria-selected="false" data-t="geo">Approccio GEO</button>
+  <button role="tab" aria-selected="false" data-t="geo">AI Visibility</button>
+  <button role="tab" aria-selected="false" data-t="terr">GEO: il territorio</button>
   <button role="tab" aria-selected="false" data-t="kw">Le ricerche</button>
   <button role="tab" aria-selected="false" data-t="prompt">Le domande all'AI</button>
   <button role="tab" aria-selected="false" data-t="camp">Campagne</button>
@@ -188,12 +193,13 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
 <!-- CONTESTO -->
 <section id="ctx">
   <h2>Di cosa parliamo oggi</h2>
-  <p class="lead">Tre temi sul perimetro della comunicazione istituzionale e della cultura: come rendere visibile BCC Arte&amp;Cultura dove oggi le persone cercano e chiedono, come costruiamo le campagne on e off, come misuriamo.</p>
+  <p class="lead">Quattro temi sul perimetro della comunicazione istituzionale e della cultura: come rendere visibile BCC Arte&amp;Cultura dove oggi le persone cercano e chiedono, come leggiamo il territorio in dati, come costruiamo le campagne on e off, come misuriamo.</p>
   <div class="grid2">
     <div class="card">
-      <h4>I tre temi</h4>
+      <h4>I quattro temi</h4>
       <ul>
-        <li><b>Visibilità nell'AI (GEO)</b>: come un programma istituzionale entra nelle risposte di AI Overview e dei modelli generativi.</li>
+        <li><b>AI Visibility</b>: come un programma istituzionale entra nelle risposte di AI Overview e dei modelli generativi.</li>
+        <li><b>GEO, i dati territoriali</b>: come si pianifica la comunicazione per 112 banche e 1.700 comuni partendo dai dati del territorio.</li>
         <li><b>Campagne on e off</b>: come lavoriamo, con esempi dal mondo finance e dal territorio.</li>
         <li><b>Reportistica e KPI</b>: cosa vedreste ogni mese, in una sola pagina.</li>
       </ul>
@@ -215,7 +221,7 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
   <h3>Da dove partiamo insieme</h3>
   <div class="grid2">
     <div class="card"><h4>Ogni contenuto è una fonte</h4><p>Il piano editoriale 2026 di BCC Arte&amp;Cultura prevede 60 contenuti Instagram e LinkedIn sui tre filoni, da febbraio a luglio. Ogni contenuto, se pubblicato anche come pagina o articolo strutturato sul portale, diventa una fonte che i motori e i modelli possono citare. La visibilità nell'AI non aggiunge un progetto: rende leggibile quello che state già raccontando.</p></div>
-    <div class="card"><h4>Il territorio si legge per micro-aree</h4><p>Con J-Hexagon, la nostra piattaforma di pianificazione media territoriale, il territorio di ogni BCC si legge in micro-aree da 1 km con 160 indicatori socio-demografici e di propensione. È la base per un media che parla a 112 comunità, non a un pubblico nazionale medio.</p></div>
+    <div class="card"><h4>Il territorio si legge per micro-aree (GEO)</h4><p>Con i nostri dati territoriali, il territorio di ogni BCC si legge in micro-aree da 1 km con 160 indicatori socio-demografici e di propensione. È la base per un media che parla a 112 comunità, non a un pubblico nazionale medio. Ne parliamo nella sezione GEO.</p></div>
   </div>
   <div class="timeline">
     <div><b>dic 2024</b><span>Lancio BCC Arte&amp;Cultura alla Braidense: il più grande museo diffuso privato italiano</span></div>
@@ -238,7 +244,7 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
   <h3>Il quinto luogo: i modelli generativi</h3>
   <div class="grid2">
     <div class="card"><h4>Cosa cambia per un brand istituzionale</h4><ul><li>Le domande sono discorsive: "quale banca investe di più nella cultura dei territori?" non è una keyword, è un prompt.</li><li>Il modello risponde con 2-4 nomi. O sei citato o non ci sei.</li><li>La citazione nasce da fonti terze autorevoli (stampa, Wikipedia, portali di settore), non solo dal sito proprietario.</li></ul></div>
-    <div class="card"><h4>Perché conta per il prossimo piano media</h4><ul><li>Il budget media compra reach; il GEO compra <b>presenza nella risposta</b>. Sono complementari e vanno misurati insieme.</li><li>Il posizionamento ESG+ è esattamente il tipo di claim che i modelli riprendono se è documentato in modo coerente su più fonti.</li><li>Le 112 BCC sono 112 entità locali: un vantaggio enorme per le query territoriali, oggi non sfruttato.</li></ul></div>
+    <div class="card"><h4>Perché conta per il prossimo piano media</h4><ul><li>Il budget media compra reach; l'AI Visibility compra <b>presenza nella risposta</b>. Sono complementari e vanno misurati insieme.</li><li>Il posizionamento ESG+ è esattamente il tipo di claim che i modelli riprendono se è documentato in modo coerente su più fonti.</li><li>Le 112 BCC sono 112 entità locali: un vantaggio enorme per le query territoriali, oggi non sfruttato.</li></ul></div>
   </div>
 </section>
 
@@ -309,7 +315,7 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
 
 <!-- GEO -->
 <section id="geo" hidden>
-  <h2>Il nostro approccio alla visibilità nell'AI</h2>
+  <h2>AI Visibility: il nostro approccio</h2>
   <p class="lead">Quattro pilastri, dalla fotografia alla governance. Il primo è già fatto: la baseline del 30 settembre è nella sezione precedente.</p>
   <div class="grid3" style="grid-template-columns:repeat(4,1fr)">
     <div class="card pillar"><div class="eyebrow">1 · Osservare</div><h4>Baseline di visibilità</h4><p>Abbiamo posto 30 domande a 7 assistenti AI e osserviamo 69 ricerche su Google (organico, annunci, AI Overview) con le nostre piattaforme JHorizon e OneSearch. Il risultato è la quota di voce di BCC rispetto a Intesa Sanpaolo (Gallerie d'Italia), UniCredit, Cassa Centrale, Banco BPM, Crédit Agricole, Banca Etica e fondazioni bancarie.</p></div>
@@ -347,6 +353,39 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
   <ul class="prompt-list" id="pl"></ul>
 </section>
 
+<!-- TERRITORIO -->
+<section id="terr" hidden>
+  <h2>GEO: il territorio in dati</h2>
+  <p class="lead">Per una banca nazionale il territorio è un target. Per 112 BCC è l'identità. Jakala lavora da vent'anni sui dati territoriali italiani: li usiamo per capire dove sono le comunità di ogni BCC, cosa le caratterizza e dove la comunicazione rende di più.</p>
+  <div class="kpi">
+    <div class="card"><b>60 mln</b><span>profili individuali ricostruiti statisticamente su fonti ufficiali (ISTAT, MEF, Banca d'Italia, IVASS)</span></div>
+    <div class="card"><b>160+</b><span>indicatori per micro-area: socio-demografia, patrimonio, consumi, propensioni, cultura</span></div>
+    <div class="card"><b>1 km</b><span>raggio minimo delle micro-aree su cui pianifichiamo e leggiamo il media</span></div>
+    <div class="card"><b>1.700</b><span>comuni delle BCC, ciascuno leggibile come insieme di micro-aree</span></div>
+  </div>
+  <div class="grid3">
+    <div class="card pillar"><div class="eyebrow">1 · Capire</div><h4>Chi abita il territorio di ogni BCC</h4><p>Per ogni sede e filiale ricostruiamo l'area di servizio (a piedi, in auto, con i mezzi) e la descriviamo con i 160 indicatori: età, famiglie, reddito, propensione al risparmio, consumi culturali, lettura, partecipazione. Il risultato è un ritratto della comunità, BCC per BCC.</p></div>
+    <div class="card pillar"><div class="eyebrow">2 · Scegliere</div><h4>Dove la comunicazione rende</h4><p>Le micro-aree si ordinano per potenziale: dove la propensione alla cultura e l'affinità con la banca di comunità sono più alte, la comunicazione istituzionale trova terreno fertile. Da qui nasce la mappa di priorità per il media locale.</p></div>
+    <div class="card pillar"><div class="eyebrow">3 · Pianificare e leggere</div><h4>Media e risultati sulla stessa mappa</h4><p>Stampa e radio locali, affissione, digital geo-targettizzato si pianificano sulle stesse micro-aree; gli account pubblicitari si collegano alla piattaforma e le performance si leggono per micro-area e per BCC, non per regione media.</p></div>
+  </div>
+
+  <h3>Cosa cambia per BCC Arte&amp;Cultura</h3>
+  <div class="grid2">
+    <div class="card"><h4>Le 100 mostre in filiale hanno un bacino misurabile</h4><p>Per ogni mostra sappiamo quante persone vivono entro 15 minuti, quante hanno propensione alta alla cultura, quali canali locali le raggiungono. Il piano promozionale di ogni tappa si dimensiona sul suo bacino reale, non su una media nazionale.</p></div>
+    <div class="card"><h4>Il Book Club sceglie le librerie con i dati</h4><p>Le 50 librerie partner e i 31 eventi si leggono con lo stesso metodo: dove il pubblico dei lettori è più denso, dove manca una libreria indipendente nel bacino di una BCC, dove un evento può coprire due comunità.</p></div>
+    <div class="card"><h4>Il contenuto locale diventa fonte</h4><p>I dati territoriali dicono anche cosa raccontare: la storia del borgo, l'artista del posto, il patrimonio da restaurare. Sono i contenuti locali che i motori e gli assistenti AI citano quando qualcuno cerca "vicino a me". GEO e AI Visibility si alimentano a vicenda.</p></div>
+    <div class="card"><h4>La reportistica parla la lingua delle BCC</h4><p>Ogni banca vede la propria mappa: bacino, copertura, risposta del territorio. Il Gruppo vede l'insieme. È lo stesso strumento, letto a due altezze.</p></div>
+  </div>
+
+  <h3>Come lo abbiamo già fatto</h3>
+  <div class="grid3">
+    <div class="card"><h4>Intesa Sanpaolo Casa</h4><p>Audience costruita integrando i dati delle piattaforme con i nostri dati territoriali, attivando solo le micro-aree a maggior potenziale intorno a un intervento immobiliare a Brescia: <b>3,80 € per lead</b>, meno del 15% di contatti rifiutati.</p></div>
+    <div class="card"><h4>Fideuram Direct</h4><p>Lancio di una banca diretta con micro-targeting territoriale per raggiungere investitori e trader dove vivono, dentro un piano annuale full funnel.</p></div>
+    <div class="card"><h4>Luxury fashion, USA</h4><p>12 mesi di campagne letti su 33.700 codici postali: l'8% delle location generava il 77% delle conversioni. Riallocando su quelle, <b>+21% di ricavi con +3% di budget</b>.</p></div>
+  </div>
+  <p class="note">La piattaforma che usiamo per questo lavoro si chiama J-Hexagon: combina il principale software GIS italiano con database territoriali e mobile, e si collega direttamente agli account media.</p>
+</section>
+
 <!-- CAMPAGNE -->
 <section id="camp" hidden>
   <h2>Campagne on e off: come lavoriamo</h2>
@@ -363,8 +402,8 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
   </div>
   <h3>Cosa cambia quando le banche sono 112</h3>
   <div class="grid3">
-    <div class="card"><h4>Il media si pianifica per BCC</h4><p>Con la pianificazione per micro-aree ogni BCC ha la sua mappa: micro-aree da 1 km intorno a sedi e filiali, pesate per propensione culturale e affinità con la banca di comunità. Stampa e radio locali, digital geo-targettizzato e affissione si allineano sulla stessa mappa, e il budget si riallocca dove risponde.</p></div>
-    <div class="card"><h4>L'evento è il media</h4><p>Le 100 mostre in filiale e i 31 incontri del Book Club sono 131 occasioni di contenuto, PR locale e fonti citabili: il piano off alimenta il GEO, e viceversa.</p></div>
+    <div class="card"><h4>Il media si pianifica per BCC</h4><p>Con il GEO ogni BCC ha la sua mappa: micro-aree da 1 km intorno a sedi e filiali, pesate per propensione culturale e affinità con la banca di comunità. Stampa e radio locali, digital geo-targettizzato e affissione si allineano sulla stessa mappa, e il budget si riallocca dove risponde.</p></div>
+    <div class="card"><h4>L'evento è il media</h4><p>Le 100 mostre in filiale e i 31 incontri del Book Club sono 131 occasioni di contenuto, PR locale e fonti citabili: il piano off alimenta la visibilità nell'AI, e viceversa.</p></div>
     <div class="card"><h4>Una cifra sola</h4><p>Per chi fa Corporate Identity il risultato si racconta in riconoscibilità, share of search, partecipazione delle comunità. Il CPA resta nel report, non nel titolo.</p></div>
   </div>
 </section>
@@ -372,7 +411,7 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
 <!-- KPI -->
 <section id="kpi" hidden>
   <h2>Reportistica: cosa vedreste ogni mese</h2>
-  <p class="lead">Un solo pannello, quattro famiglie di indicatori. La visibilità nell'AI è misurata con la stessa cadenza del media, così le due letture stanno sulla stessa pagina.</p>
+  <p class="lead">Un solo pannello, cinque famiglie di indicatori. La visibilità nell'AI è misurata con la stessa cadenza del media, così le due letture stanno sulla stessa pagina.</p>
   <div class="kpi">
     <div class="card"><b>Quota di voce AI</b><span>% di risposte degli assistenti AI che citano BCC sulle domande del perimetro</span></div>
     <div class="card"><b>Presenza AI Overview</b><span>% di ricerche con BCC tra le fonti citate (oggi 0 su 64)</span></div>
@@ -391,13 +430,14 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
       <p class="note">Ogni mese la stessa lettura, con Intesa Sanpaolo, UniCredit, Banca Etica e le fondazioni nel confronto.</p>
     </div>
     <div class="card">
-      <h4>Le quattro famiglie</h4>
+      <h4>Le cinque famiglie</h4>
       <div class="tscroll" style="border:0"><table>
         <thead><tr><th>Famiglia</th><th>Indicatori</th><th>Fonte</th></tr></thead>
         <tbody>
           <tr><td><b>Brand</b></td><td>awareness, considerazione, share of search, sentiment</td><td>brand tracking, Google Trends, social listening</td></tr>
           <tr><td><b>Media</b></td><td>reach netta on+off, GRP locali, frequenza, performance per micro-area e per BCC</td><td>post-valutazioni, ad server, J-Hexagon, GA4</td></tr>
           <tr><td><b>Visibilità AI</b></td><td>quota di voce negli assistenti AI, citazioni per fonte, presenza in AI Overview, posizione organica</td><td>JHorizon, OneSearch</td></tr>
+          <tr><td><b>GEO</b></td><td>bacino per BCC, copertura delle micro-aree ad alto potenziale, risposta del territorio</td><td>J-Hexagon</td></tr>
           <tr><td><b>Territorio</b></td><td>eventi, presenze, copertura stampa locale, BCC attive</td><td>bccartecultura.it, rassegna, CRM BCC</td></tr>
         </tbody>
       </table></div>
