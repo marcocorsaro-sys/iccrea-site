@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>ICCREA Arte&Cultura GEO</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: left rail nav + one section at a time; tabelle full-width dentro contenitori scrollabili. Palette = manuale identità BCC (Verde BCC, Blu BCC, blu scuro, celeste, verde acido). */
+:root{
+  --bg:#f5f7f4; --surface:#ffffff; --fg:#0f1f2e; --muted:#5b6b78; --line:#d8dfda;
+  --green:#00843d; --green-deep:#00491f; --blue:#003594; --blue-deep:#001e62; --sky:#62b5e5; --acid:#65a812; --aqua:#49c5b1;
+  --tint:#e6f2ea; --tint-blue:#e8eef9;
+  --display:"Bricolage Grotesque",Georgia,serif; --body:"Public Sans",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a14;--surface:#142219;--fg:#e9efe9;--muted:#9fb2a7;--line:#25382d;--green:#2fb36a;--green-deep:#8fd8ac;--blue:#7fa6ff;--blue-deep:#b8ccff;--acid:#9edc45;--tint:#193226;--tint-blue:#1b2740;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1a14;--surface:#142219;--fg:#e9efe9;--muted:#9fb2a7;--line:#25382d;--green:#2fb36a;--green-deep:#8fd8ac;--blue:#7fa6ff;--blue-deep:#b8ccff;--acid:#9edc45;--tint:#193226;--tint-blue:#1b2740;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 var(--body)}
+a{color:var(--blue)}
+.wrap{max-width:1180px;margin:0 auto;padding-block:0 48px;padding-inline:16px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.brands{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.jk{font:700 22px/1 var(--display);letter-spacing:.14em;color:var(--fg)}
+.x{color:var(--muted);font-size:13px}
+.bcc{display:flex;align-items:baseline;gap:6px;font:700 20px/1 var(--display)}
+.bcc .g{color:var(--green)} .bcc .b{color:var(--blue)}
+.meta{font:12px var(--mono);color:var(--muted);text-align:right}
+.hero{padding-block:36px 24px;display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:end}
+.hero h1{font:700 clamp(30px,4.5vw,52px)/1.02 var(--display);margin:0 0 12px;text-wrap:balance;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero p{margin:0;max-width:62ch;color:var(--muted);font-size:16px}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.fact{background:var(--surface);border:1px solid var(--line);padding:12px 14px;border-left:4px solid var(--green)}
+.fact b{display:block;font:600 22px/1.1 var(--mono);font-variant-numeric:tabular-nums}
+.fact span{font-size:12px;color:var(--muted)}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:4px;overflow-x:auto;border-bottom:2px solid var(--line);margin-block:8px 28px;scrollbar-width:none}
+nav.tabs button{flex:0 0 auto;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:12px 14px;font:600 13px var(--body);color:var(--muted);cursor:pointer;letter-spacing:.02em}
+nav.tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--green)}
+nav.tabs button:focus-visible{outline:2px solid var(--sky);outline-offset:-2px}
+section[hidden]{display:none}
+h2{font:700 30px/1.1 var(--display);margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance}
+h3{font:700 18px/1.2 var(--display);margin:24px 0 8px}
+.lead{color:var(--muted);max-width:70ch;margin:0 0 22px;font-size:16px}
+.eyebrow{font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);padding:18px;min-width:0}
+.card h4{margin:0 0 8px;font:700 16px/1.25 var(--display)}
+.card p,.card li{font-size:14px;color:var(--fg)}
+.card ul{padding-left:18px;margin:6px 0}
+.person{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+.avatar{width:56px;height:56px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font:700 18px var(--display)}
+.pill{display:inline-block;font:600 11px var(--mono);padding:2px 8px;border:1px solid var(--line);border-radius:999px;color:var(--muted);letter-spacing:.04em}
+.pill.g{color:var(--green);border-color:var(--green)}
+.pill.b{color:var(--blue);border-color:var(--blue)}
+.pill.a{color:var(--green-deep);background:var(--tint);border-color:transparent}
+.pill.w{color:#8a5a00;border-color:#d9a83d}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--line);margin-top:10px}
+.timeline div{padding:14px 12px 0;border-left:1px solid var(--line)}
+.timeline div:first-child{border-left:0;padding-left:0}
+.timeline b{font:600 13px var(--mono);color:var(--green);display:block}
+.timeline span{font-size:13px;color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th{text-align:left;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.kw{font-weight:600}
+.tscroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.toolbar input,.toolbar select{font:14px var(--body);padding:8px 10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);min-width:0}
+.toolbar input{flex:1 1 220px}
+.btn{font:600 13px var(--body);padding:8px 14px;border:1px solid var(--green);background:var(--green);color:#fff;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--green)}
+.btn:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.count{font:12px var(--mono);color:var(--muted)}
+.logo{display:flex;align-items:center;height:56px;padding:10px 14px;background:var(--blue-deep);margin:-18px -18px 14px;border-bottom:1px solid var(--line)}
+.logo img{max-height:32px;max-width:180px;width:auto;height:auto}
+.logo.t{color:#fff;font:700 15px var(--display);letter-spacing:.02em}
+.logo.t small{font:600 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin-left:8px}
+.band{margin-top:14px}
+.band h4{margin:0 0 8px;font:700 15px var(--display);display:flex;align-items:center;gap:10px}
+.band h4 .pill{font-size:10px}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0;padding:0;list-style:none}
+.qgrid li{display:grid;grid-template-columns:1fr 92px;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);padding:8px 10px;font-size:13.5px;min-width:0}
+.dots{display:flex;gap:3px;justify-content:flex-end}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--line);display:block}
+.dots i.on{background:var(--green)}
+.band.ok .dots i.on{background:var(--green)} .band.mid .dots i.on{background:var(--sky)} .band.no .dots i.on{background:var(--muted)}
+.quote{border-left:4px solid var(--green);padding:10px 14px;background:var(--surface);font-size:14.5px;line-height:1.5}
+.quote small{display:block;font:11px var(--mono);color:var(--muted);margin-top:6px}
+.src{display:grid;grid-template-columns:200px 1fr 40px;gap:10px;align-items:center;font-size:13px}
+.src .track{height:12px;background:var(--tint);position:relative}
+.src .fill{position:absolute;inset:0 auto 0 0;background:var(--muted);opacity:.5}
+.src.own .fill{background:var(--green);opacity:1}
+.src b{font:600 12px var(--mono);text-align:right}
+@media (max-width:820px){.qgrid{grid-template-columns:1fr}.src{grid-template-columns:120px 1fr 36px}}
+.st{display:inline-block;font:600 11px var(--mono);padding:2px 7px;border-radius:3px;white-space:nowrap}
+.st.y{background:var(--tint-blue);color:var(--blue)} .st.m{background:var(--tint);color:var(--green-deep)} .st.n{color:var(--muted);border:1px solid var(--line)}
+.pillar{border-top:4px solid var(--green)}
+.pillar:nth-child(2){border-top-color:var(--blue)} .pillar:nth-child(3){border-top-color:var(--acid)} .pillar:nth-child(4){border-top-color:var(--sky)}
+.prompt-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0;padding:0;list-style:none}
+.prompt-list li{background:var(--surface);border:1px solid var(--line);padding:10px 12px;font-size:14px;display:flex;gap:10px;align-items:flex-start;min-width:0}
+.prompt-list li i{font:600 11px var(--mono);color:var(--muted);flex:0 0 auto;padding-top:3px;font-style:normal}
+.demo{background:var(--surface);border:1px solid var(--line);padding:18px}
+.bars{display:grid;gap:10px;margin-top:10px}
+.bar{display:grid;grid-template-columns:150px 1fr 48px;align-items:center;gap:10px;font-size:13px}
+.bar .track{height:14px;background:var(--tint);position:relative}
+.bar .fill{position:absolute;inset:0 auto 0 0;background:var(--green)}
+.bar .fill.c{background:var(--muted);opacity:.55}
+.bar b{font:600 12px var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+.note{font:12px var(--mono);color:var(--muted);margin-top:10px}
+.placeholder{border:1px dashed var(--muted);background:transparent}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0 20px}
+.kpi .card b{display:block;font:600 24px/1.1 var(--mono);color:var(--green)}
+.kpi .card span{font-size:12px;color:var(--muted)}
+.dim{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dim .card{border-top:4px solid var(--blue)}
+.dim .card:nth-child(2){border-top-color:var(--green)} .dim .card:nth-child(3){border-top-color:var(--acid)}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12px var(--mono);color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.toast{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;font:600 13px var(--body);opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.on{opacity:1}
+@media (max-width:820px){.hero,.grid2,.dim,.prompt-list{grid-template-columns:1fr}.grid3,.kpi,.timeline{grid-template-columns:1fr 1fr}.timeline div:nth-child(odd){border-left:0;padding-left:0}.bar{grid-template-columns:110px 1fr 44px}}
+@media (max-width:480px){.grid3,.kpi,.facts{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+</style>
+<style>
+.dl{font:600 13px var(--body);padding:8px 14px;border:1px solid var(--blue);color:var(--blue);text-decoration:none;white-space:nowrap}
+.dl:hover{background:var(--tint-blue)}
+@media print{
+  @page{size:A4;margin:14mm 12mm}
+  html{color-scheme:light}
+  :root{--bg:#fff;--surface:#fff;--fg:#0f1f2e;--muted:#5b6b78;--line:#d8dfda;--green:#00843d;--green-deep:#00491f;--blue:#003594;--blue-deep:#001e62;--sky:#62b5e5;--acid:#65a812;--tint:#e6f2ea;--tint-blue:#e8eef9}
+  body{font-size:12.5px}
+  nav.tabs,.toolbar,.dl,#toast{display:none!important}
+  section{display:block!important;page-break-before:always}
+  section[hidden]{display:block!important}
+  section#ctx{page-break-before:auto}
+  .wrap{max-width:none;padding-inline:0}
+  .hero{grid-template-columns:1.4fr 1fr}
+  .hero h1{font-size:30px}
+  .card,.demo,.fact,.quote,.qgrid li{break-inside:avoid}
+  .grid3{grid-template-columns:repeat(3,1fr)!important}
+  .kpi{grid-template-columns:repeat(4,1fr)}
+  .tscroll{overflow:visible;border:0}
+  table{font-size:10.5px} td,th{padding:5px 6px}
+  .logo{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brands">
+    <span class="jk">JAKALA</span><span class="x">per</span>
+    <span class="bcc"><span class="g">Gruppo BCC</span><span class="b">Iccrea</span></span>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px"><div class="meta">Comunicazione istituzionale e cultura<br>5 ottobre 2026</div><a class="dl" href="/BCC-Iccrea-ArteCultura-Jakala.pdf" download>Scarica PDF</a></div>
+</header>
+
+<div class="hero">
+  <div>
+    <div class="eyebrow">Visibilità · Campagne · Misurazione</div>
+    <h1>La cultura dei territori, <em>trovata</em> anche dove oggi si cerca con l'AI.</h1>
+    <p>Come rendere BCC Arte&amp;Cultura e le 112 BCC visibili nelle tre dimensioni di Google e nelle risposte dei modelli generativi, e come misurarlo con la stessa disciplina del media classico.</p>
+  </div>
+  <div class="facts">
+    <div class="fact"><b>112</b><span>BCC del Gruppo</span></div>
+    <div class="fact"><b>1.700+</b><span>comuni presidiati</span></div>
+    <div class="fact"><b>150</b><span>opere nel museo diffuso</span></div>
+    <div class="fact"><b>100</b><span>artisti under 35 in mostra 2026</span></div>
+  </div>
+</div>
+
+<nav class="tabs" role="tablist" aria-label="Sezioni">
+  <button role="tab" aria-selected="true" data-t="ctx">Contesto</button>
+  <button role="tab" aria-selected="false" data-t="search">Come si cerca oggi</button>
+  <button role="tab" aria-selected="false" data-t="base">Dove siamo oggi</button>
+  <button role="tab" aria-selected="false" data-t="geo">Approccio GEO</button>
+  <button role="tab" aria-selected="false" data-t="kw">Le ricerche</button>
+  <button role="tab" aria-selected="false" data-t="prompt">Le domande all'AI</button>
+  <button role="tab" aria-selected="false" data-t="camp">Campagne</button>
+  <button role="tab" aria-selected="false" data-t="kpi">Misurazione</button>
+</nav>
+
+<!-- CONTESTO -->
+<section id="ctx">
+  <h2>Di cosa parliamo oggi</h2>
+  <p class="lead">Tre temi sul perimetro della comunicazione istituzionale e della cultura: come rendere visibile BCC Arte&amp;Cultura dove oggi le persone cercano e chiedono, come costruiamo le campagne on e off, come misuriamo.</p>
+  <div class="grid2">
+    <div class="card">
+      <h4>I tre temi</h4>
+      <ul>
+        <li><b>Visibilità nell'AI (GEO)</b>: come un programma istituzionale entra nelle risposte di AI Overview e dei modelli generativi.</li>
+        <li><b>Campagne on e off</b>: come lavoriamo, con esempi dal mondo finance e dal territorio.</li>
+        <li><b>Reportistica e KPI</b>: cosa vedreste ogni mese, in una sola pagina.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Il punto di partenza</h4>
+      <p>Le campagne istituzionali del Gruppo, "Uniti siamo ancora più unici" e "Per guardare lontano, scegli una banca che ti sta vicino", hanno fissato un'identità chiara: comunità, territorio, mutualità. BCC Arte&amp;Cultura è la sua espressione più concreta.</p>
+      <p>La domanda che ci poniamo: quando una persona chiede a Google o a un assistente AI "quale banca sostiene la cultura del mio territorio?", oggi la risposta contiene BCC?</p>
+    </div>
+  </div>
+
+  <h3>BCC Arte&amp;Cultura: il programma da cui partiamo</h3>
+  <div class="grid3">
+    <div class="card pillar"><div class="eyebrow">Arte</div><h4>Museo diffuso, Galleria 3D, Futuri Emergenti Italiani</h4><p>150 opere censite e visitabili nelle sedi delle BCC (catalogo <i>L'Arte dei Territori</i>), rese accessibili anche in una Galleria 3D. Dal 2026: 100 artisti under 35, uno per BCC, con mostre personali in filiale da aprile a dicembre e catalogo <i>Futuri Emergenti Italiani</i>.</p></div>
+    <div class="card pillar"><div class="eyebrow">Lettura</div><h4>BCC Book Club</h4><p>51 volumi di autori contemporanei ed editori indipendenti, 50 librerie partner e 31 eventi di presentazione sul tema del "Nascere", voucher sconto libri per soci, clienti e dipendenti valido fino al 31/12/2026.</p></div>
+    <div class="card pillar"><div class="eyebrow">Scuola · Restauri</div><h4>Territorio come infrastruttura culturale</h4><p>Catalogo <i>Percorsi Didattici</i> con 40 scuole aderenti, restauri sostenuti dalle singole BCC (Braidense, Castello di Carrù, sculture Sirtoli a Zanica). Posizionamento dichiarato dal DG Pastore: <b>ESG+, dove il "+" è la Cultura</b>.</p></div>
+  </div>
+
+  <h3>Da dove partiamo insieme</h3>
+  <div class="grid2">
+    <div class="card"><h4>Ogni contenuto è una fonte</h4><p>Il piano editoriale 2026 di BCC Arte&amp;Cultura prevede 60 contenuti Instagram e LinkedIn sui tre filoni, da febbraio a luglio. Ogni contenuto, se pubblicato anche come pagina o articolo strutturato sul portale, diventa una fonte che i motori e i modelli possono citare. La visibilità nell'AI non aggiunge un progetto: rende leggibile quello che state già raccontando.</p></div>
+    <div class="card"><h4>Il territorio si legge per micro-aree</h4><p>Con J-Hexagon, la nostra piattaforma di pianificazione media territoriale, il territorio di ogni BCC si legge in micro-aree da 1 km con 160 indicatori socio-demografici e di propensione. È la base per un media che parla a 112 comunità, non a un pubblico nazionale medio.</p></div>
+  </div>
+  <div class="timeline">
+    <div><b>dic 2024</b><span>Lancio BCC Arte&amp;Cultura alla Braidense: il più grande museo diffuso privato italiano</span></div>
+    <div><b>dic 2025</b><span>Seconda edizione al Mudec: focus nuove generazioni, mappatura 100 under 35</span></div>
+    <div><b>apr–dic 2026</b><span>Mostre personali nelle filiali, Book Club, voucher librerie</span></div>
+    <div><b>2027</b><span>Il prossimo piano di comunicazione del perimetro cultura e territorio</span></div>
+  </div>
+  <p class="note">Fonti: bccartecultura.it, comunicati Gruppo BCC Iccrea 1/12/2025, gruppobcciccrea.it.</p>
+</section>
+
+<!-- SEARCH -->
+<section id="search" hidden>
+  <h2>Dove si forma oggi l'opinione su "banca e cultura"</h2>
+  <p class="lead">La stessa domanda viene risposta in quattro posti diversi. Il media istituzionale tradizionale ne governa uno. Noi li osserviamo tutti, nella stessa lettura.</p>
+  <div class="dim">
+    <div class="card"><div class="eyebrow">Google · organico</div><h4>Risultati classici</h4><p>Chi si posiziona su "banche che sostengono l'arte", "museo diffuso", "artisti emergenti under 35". Oggi il tema è presidiato da testate e fondazioni bancarie, raramente dalle banche stesse.</p></div>
+    <div class="card"><div class="eyebrow">Google · paid</div><h4>Annunci</h4><p>Quali brand comprano le keyword del territorio e della cultura, con quali messaggi. Serve a capire chi già considera questo spazio un'arena competitiva.</p></div>
+    <div class="card"><div class="eyebrow">Google · AI Overview</div><h4>Risposta sintetica</h4><p>La risposta generata cita fonti: se BCC non è tra le fonti, non esiste nella risposta anche se esiste nei risultati sotto.</p></div>
+  </div>
+  <h3>Il quinto luogo: i modelli generativi</h3>
+  <div class="grid2">
+    <div class="card"><h4>Cosa cambia per un brand istituzionale</h4><ul><li>Le domande sono discorsive: "quale banca investe di più nella cultura dei territori?" non è una keyword, è un prompt.</li><li>Il modello risponde con 2-4 nomi. O sei citato o non ci sei.</li><li>La citazione nasce da fonti terze autorevoli (stampa, Wikipedia, portali di settore), non solo dal sito proprietario.</li></ul></div>
+    <div class="card"><h4>Perché conta per il prossimo piano media</h4><ul><li>Il budget media compra reach; il GEO compra <b>presenza nella risposta</b>. Sono complementari e vanno misurati insieme.</li><li>Il posizionamento ESG+ è esattamente il tipo di claim che i modelli riprendono se è documentato in modo coerente su più fonti.</li><li>Le 112 BCC sono 112 entità locali: un vantaggio enorme per le query territoriali, oggi non sfruttato.</li></ul></div>
+  </div>
+</section>
+
+<!-- BASELINE -->
+<section id="base" hidden>
+  <h2>Dove siamo oggi: la prima fotografia</h2>
+  <p class="lead">Il 30 settembre abbiamo posto le 30 domande a 7 assistenti AI, per 210 risposte, e letto le 69 ricerche su Google. Nessun intervento, solo osservazione. Questa è la base da cui si misura tutto il resto.</p>
+  <div class="kpi">
+    <div class="card"><b>60%</b><span>delle risposte cita il Gruppo BCC Iccrea o una sua BCC</span></div>
+    <div class="card"><b>0</b><span>volte al primo posto nella risposta (2ª posizione in 50 casi)</span></div>
+    <div class="card"><b>48%</b><span>delle risposte cita Cassa Centrale Banca, l'altro gruppo cooperativo</span></div>
+    <div class="card"><b>95%</b><span>delle citazioni sul brand sono positive o neutre</span></div>
+  </div>
+  <div class="grid2">
+    <div class="demo">
+      <div class="eyebrow">Per assistente · % risposte con BCC</div>
+      <div class="bars"><div class="bar"><span>Gemini</span><div class="track"><div class="fill" style="width:70%"></div></div><b>70%</b></div><div class="bar"><span>Grok</span><div class="track"><div class="fill" style="width:70%"></div></div><b>70%</b></div><div class="bar"><span>Google AI Overview</span><div class="track"><div class="fill" style="width:67%"></div></div><b>67%</b></div><div class="bar"><span>Google AI Mode</span><div class="track"><div class="fill" style="width:63%"></div></div><b>63%</b></div><div class="bar"><span>Claude</span><div class="track"><div class="fill" style="width:63%"></div></div><b>63%</b></div><div class="bar"><span>Perplexity Sonar</span><div class="track"><div class="fill" style="width:50%"></div></div><b>50%</b></div><div class="bar"><span>ChatGPT</span><div class="track"><div class="fill c" style="width:40%"></div></div><b>40%</b></div></div>
+      <p class="note">Gemini e Grok conoscono bene il Gruppo; ChatGPT, il più usato, è quello che lo cita meno.</p>
+    </div>
+    <div class="card">
+      <h4>Cosa dice questa fotografia</h4>
+      <ul>
+        <li><b>Come banca del territorio, BCC è riconosciuta.</b> Sulle domande su cooperazione, comunità, "banca più legata al territorio" la risposta contiene BCC quasi sempre.</li>
+        <li><b>Come banca della cultura, non ancora.</b> Sulle domande su collezioni visitabili, mostre sponsorizzate, palazzi storici, opere in filiale, BCC non compare: il programma esiste, ma l'AI lo trova solo se glielo si nomina.</li>
+        <li><b>Il tono è dalla vostra parte.</b> I pochi passaggi negativi riguardano governance e riforma del credito cooperativo, mai la cultura.</li>
+        <li><b>Il nome conta.</b> "Iccrea Banca" da sola compare nel 33% delle risposte; "Gruppo BCC Iccrea" e le singole BCC portano il resto. La visibilità è del sistema, non della capogruppo.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>E su Google?</h3>
+  <p class="lead" style="margin-bottom:12px">Le stesse 69 ricerche, lette il 30 settembre nelle tre dimensioni di Google.</p>
+  <div class="kpi">
+    <div class="card"><b>64 / 69</b><span>ricerche con un AI Overview in testa ai risultati</span></div>
+    <div class="card"><b>17</b><span>AI Overview che nominano BCC senza citare una fonte BCC</span></div>
+    <div class="card"><b>0</b><span>AI Overview che citano una pagina del Gruppo o di una BCC</span></div>
+    <div class="card"><b>9</b><span>ricerche con annunci di altri; nessuno del Gruppo</span></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h4>Google risponde prima di mostrare i risultati</h4><p>Su 64 ricerche su 69 l'AI Overview apre la pagina. In 17 casi nomina BCC (anche su "museo diffuso bcc", "futuri emergenti italiani", "bcc book club") ma la fonte citata è una testata o un portale terzo, non bccartecultura.it. La notizia c'è; la fonte no. È il divario più facile da chiudere: rendere le pagine del programma citabili.</p></div>
+    <div class="card"><h4>Lo spazio pubblicitario è quasi vuoto</h4><p>Solo 9 ricerche su 69 hanno annunci, e sono di terzi: musei, fondazioni, un solo annuncio bancario (Banca Mediolanum su "banca locale vicino a me"). Sul perimetro cultura nessuna banca compra parole. Presidiare "mostre gratuite vicino a me" o "gruppo di lettura" nelle città delle mostre in filiale costa poco e non ha concorrenza.</p></div>
+  </div>
+  <p class="note">Il dettaglio per ricerca, con annunci e AI Overview, è nella sezione "Le ricerche". La lettura del posizionamento organico per dominio arriva con la prossima osservazione.</p>
+
+  <h3>Le 30 domande, una per una</h3>
+  <p class="lead" style="margin-bottom:8px">Ogni punto è un assistente su sette che cita BCC nella risposta.</p>
+  <div class="band ok"><h4>Riconosciuti <span class="pill">6-7 su 7</span></h4><p class="lead" style="margin:0 0 8px;font-size:14px">Identità, cooperazione, territorio, il nome del programma.</p><ul class="qgrid"><li><span>Che differenza c'è tra Gruppo BCC Iccrea e Cassa Centrale Banca?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>Qual è il maggiore gruppo bancario cooperativo in Italia?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>Qual è la banca più legata al territorio in Italia?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>Cos'è BCC Arte&Cultura e cosa fa?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>Quali sono le migliori banche italiane per chi vuole sostenere il proprio territorio?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>Cosa fanno le banche cooperative per i giovani?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>Cos'è una banca di credito cooperativo e in cosa è diversa da una banca normale?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>Quali banche reinvestono gli utili nel territorio in cui operano?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>Banca Etica o una BCC: quale è più impegnata socialmente?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>Quali banche organizzano gruppi di lettura o iniziative per promuovere la lettura?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span></li><li><span>Quali iniziative culturali fanno le banche nei piccoli comuni?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span></li><li><span>Come diventare socio di una banca di credito cooperativo e quali vantaggi ci sono?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span></li></ul></div>
+  <div class="band mid"><h4>Presenti ma non protagonisti <span class="pill">3-5 su 7</span></h4><p class="lead" style="margin:0 0 8px;font-size:14px">Giovani, artisti emergenti, borghi, restauri: BCC compare, ma dopo altri.</p><ul class="qgrid"><li><span>Mi consigli una banca attenta alla cultura e alla comunità locale?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></li><li><span>Quali banche promuovono l'arte nei borghi italiani?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></li><li><span>Dove posso vedere mostre di artisti emergenti under 35 in Italia nel 2026?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Quali banche finanziano restauri di opere d'arte e patrimonio locale?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Quali banche italiane sostengono l'arte e la cultura?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Quali banche sostengono i giovani artisti italiani?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Quali banche fanno educazione finanziaria nelle scuole?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Quali banche italiane sono più impegnate nella responsabilità sociale?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Esistono sconti sui libri offerti da banche ai propri clienti?</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></li></ul></div>
+  <div class="band no"><h4>Assenti <span class="pill">0-2 su 7</span></h4><p class="lead" style="margin:0 0 8px;font-size:14px">Il cuore del perimetro cultura. Qui si concentra il lavoro.</p><ul class="qgrid"><li><span>Cosa significa ESG+ e quali banche lo applicano?</span><span class="dots"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Cos'è un museo diffuso e ce ne sono in Italia legati a banche?</span><span class="dots"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Quali sono gli esempi di mecenatismo bancario in Italia oggi?</span><span class="dots"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Ci sono banche che espongono opere d'arte nelle filiali?</span><span class="dots"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Quale banca investe di più nella cultura dei territori italiani?</span><span class="dots"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Quali banche italiane hanno una collezione d'arte visitabile gratuitamente?</span><span class="dots"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Quali banche sponsorizzano mostre d'arte in Italia?</span><span class="dots"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Chi finanzia il restauro degli affreschi e dei palazzi storici nei piccoli centri?</span><span class="dots"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></li><li><span>Quali banche hanno sedi in palazzi storici visitabili?</span><span class="dots"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></li></ul></div>
+
+  <h3>Chi viene citato quando si parla di banche e cultura</h3>
+  <div class="grid2">
+    <div class="demo">
+      <div class="eyebrow">Fonti più citate dagli assistenti · numero di citazioni</div>
+      <div class="bars" style="margin-top:8px"><div class="src"><span>group.intesasanpaolo.com</span><div class="track"><div class="fill" style="width:100%"></div></div><b>64</b></div><div class="src"><span>bancaditalia.it</span><div class="track"><div class="fill" style="width:56%"></div></div><b>36</b></div><div class="src"><span>bancaetica.it</span><div class="track"><div class="fill" style="width:47%"></div></div><b>30</b></div><div class="src"><span>group.bper.it</span><div class="track"><div class="fill" style="width:34%"></div></div><b>22</b></div><div class="src own"><span>gruppobcciccrea.it</span><div class="track"><div class="fill" style="width:34%"></div></div><b>22</b></div><div class="src own"><span>creditocooperativo.it</span><div class="track"><div class="fill" style="width:30%"></div></div><b>19</b></div><div class="src"><span>gallerieditalia.com</span><div class="track"><div class="fill" style="width:22%"></div></div><b>14</b></div><div class="src"><span>ilgiornaledellarte.com</span><div class="track"><div class="fill" style="width:20%"></div></div><b>13</b></div><div class="src"><span>aziendabanca.it</span><div class="track"><div class="fill" style="width:19%"></div></div><b>12</b></div><div class="src"><span>unicreditgroup.eu</span><div class="track"><div class="fill" style="width:19%"></div></div><b>12</b></div><div class="src"><span>youtube.com</span><div class="track"><div class="fill" style="width:19%"></div></div><b>12</b></div><div class="src"><span>progettocultura.intesasanpaolo.com</span><div class="track"><div class="fill" style="width:19%"></div></div><b>12</b></div><div class="src own"><span>bccartecultura.it</span><div class="track"><div class="fill" style="width:19%"></div></div><b>12</b></div></div>
+      <p class="note">In verde le fonti del sistema BCC. Intesa Sanpaolo, con Gallerie d'Italia e Progetto Cultura, è la voce dominante: 104 citazioni contro 120 dell'intero ecosistema BCC.</p>
+    </div>
+    <div class="card">
+      <h4>Il vantaggio già visibile</h4>
+      <p>Le citazioni BCC arrivano da <b>47 domini diversi</b>: il portale di Gruppo, creditocooperativo.it, bccartecultura.it e poi bccroma.it, labcc.it, bccmilano.it, bccveneta.it e altre venti banche. Nessun concorrente nazionale ha questa rete di fonti locali. Oggi è dispersa; allineata sullo stesso racconto, diventa il motore della visibilità.</p>
+      <h4 style="margin-top:16px">Come ne parlano</h4>
+      <div class="quote">"Si tratta di un progetto senza precedenti: oltre 100 banche coinvolte, oltre 100 artisti under 35, oltre 100 progetti espositivi, oltre 100 territori attraversati."<small>risposta di un assistente AI su BCC Arte&amp;Cultura</small></div>
+      <div class="quote" style="margin-top:8px">"Il caso più esplicito è il progetto BCC Arte &amp; Cultura del Gruppo BCC Iccrea."<small>risposta alla domanda sulle banche che espongono opere nelle filiali</small></div>
+    </div>
+  </div>
+  <p class="note">Fonte: osservazione JHorizon e OneSearch del 30/09/2026. 30 domande × 7 assistenti (ChatGPT, Gemini, Claude, Perplexity, Grok, Google AI Overview, Google AI Mode); 69 ricerche su Google Italia. Prossima lettura: dopo l'allineamento del set di confronto.</p>
+</section>
+
+<!-- GEO -->
+<section id="geo" hidden>
+  <h2>Il nostro approccio alla visibilità nell'AI</h2>
+  <p class="lead">Quattro pilastri, dalla fotografia alla governance. Il primo è già fatto: la baseline del 30 settembre è nella sezione precedente.</p>
+  <div class="grid3" style="grid-template-columns:repeat(4,1fr)">
+    <div class="card pillar"><div class="eyebrow">1 · Osservare</div><h4>Baseline di visibilità</h4><p>Abbiamo posto 30 domande a 7 assistenti AI e osserviamo 69 ricerche su Google (organico, annunci, AI Overview) con le nostre piattaforme JHorizon e OneSearch. Il risultato è la quota di voce di BCC rispetto a Intesa Sanpaolo (Gallerie d'Italia), UniCredit, Cassa Centrale, Banco BPM, Crédit Agricole, Banca Etica e fondazioni bancarie.</p></div>
+    <div class="card pillar"><div class="eyebrow">2 · Rendere leggibile</div><h4>Entità e fonti</h4><p>Consolidare l'entità "BCC Arte&amp;Cultura" (Wikipedia, Wikidata, schema.org su bccartecultura.it, Google Business Profile delle sedi espositive), e allineare le 112 BCC come nodi della stessa entità.</p></div>
+    <div class="card pillar"><div class="eyebrow">3 · Alimentare</div><h4>Contenuto citabile</h4><p>I 60 contenuti del piano editoriale 2026 pubblicati anche come pagine-risposta sul portale (cos'è un museo diffuso, come visitare la Galleria 3D, chi sono gli artisti), schede opera strutturate, PR digitale su testate d'arte e locali: le fonti che i modelli leggono davvero.</p></div>
+    <div class="card pillar"><div class="eyebrow">4 · Governare</div><h4>Ciclo mensile</h4><p>Lettura mensile della visibilità insieme ai dati media, con un piano di interventi per BCC. La reportistica è la stessa dal primo mese: nessuna fase di prova con numeri diversi da quelli veri.</p></div>
+  </div>
+  <h3>Perché le BCC hanno un vantaggio strutturale</h3>
+  <div class="grid2">
+    <div class="card"><h4>Località</h4><p>I modelli rispondono bene a "vicino a me" quando esistono entità locali documentate. 112 banche, 1.700 comuni, 100 mostre in filiale: ogni evento è una fonte locale citabile. Nessun competitor nazionale ha questa granularità.</p></div>
+    <div class="card"><h4>Coerenza del claim</h4><p>ESG+ / cultura come "+" è un claim semplice, ripetuto dal vertice, documentato da comunicati e dal portale. È il tipo di affermazione che un modello riprende volentieri se la trova su fonti indipendenti.</p></div>
+  </div>
+</section>
+
+<!-- KEYWORD -->
+<section id="kw" hidden>
+  <h2>Le ricerche che osserviamo</h2>
+  <p class="lead">69 ricerche in otto gruppi, dal nome del programma ai temi del territorio, osservate su Google il 30 settembre nelle tre dimensioni: annunci, risultati organici, AI Overview. Le quattro città (Milano, Roma, Bergamo, Bari) sono un campione: si declinano per ogni BCC.</p>
+  <div class="toolbar">
+    <input id="kwq" type="search" placeholder="Cerca…" aria-label="Cerca">
+    <select id="kwc" aria-label="Cluster"><option value="">Tutti i gruppi</option></select>
+    <select id="kwp" aria-label="Priorità"><option value="">Tutte le priorità</option><option>Alta</option><option>Media</option><option>Bassa</option></select>
+    <select id="kwa" aria-label="AI Overview"><option value="">AI Overview: tutte</option><option value="M">BCC nominata, non citata</option><option value="Y">Presente, senza BCC</option><option value="N">Assente</option></select>
+    <button class="btn" id="kwcsv">Copia CSV</button>
+    <span class="count" id="kwn"></span>
+  </div>
+  <div class="tscroll"><table id="kwt"><thead><tr><th>Keyword</th><th>Cluster</th><th>Intent</th><th>Tipo</th><th>Priorità</th><th>Annunci</th><th>AI Overview</th><th>Nota</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<!-- PROMPT -->
+<section id="prompt" hidden>
+  <h2>Le domande che le persone fanno all'AI</h2>
+  <p class="lead">Trenta domande, scritte come le scriverebbe una persona. Le poniamo a ChatGPT, Gemini, Claude, Perplexity, Copilot, Mistral e Google AI Mode e registriamo chi viene citato nella risposta: BCC e i concorrenti della lista ricerche.</p>
+  <div class="toolbar"><button class="btn" id="pcopy">Copia le domande</button><span class="count" id="pn"></span></div>
+  <ul class="prompt-list" id="pl"></ul>
+</section>
+
+<!-- CAMPAGNE -->
+<section id="camp" hidden>
+  <h2>Campagne on e off: come lavoriamo</h2>
+  <p class="lead">Esempi dal mondo finance e una proposta pensata per il Gruppo. In comune: il media si pianifica sul territorio, l'evento diventa contenuto, il risultato si racconta in una cifra che parla a chi fa comunicazione.</p>
+  <div class="grid3">
+    <div class="card"><div class="logo t">Iccrea Voices<small>Gruppo BCC Iccrea</small></div><h4>Tre voci per il Gruppo</h4><p>Attivazione sui canali social e con i creator, proposta al Gruppo per il 2025-26 in tre moduli: <b>Education</b> con una partnership editoriale nel mese dell'educazione finanziaria, <b>Imprese</b> con quattro creator di settore che raccontano quattro aziende sostenute dalle BCC, <b>People</b> con interviste vox populi sulla finanza nelle città. Ogni modulo: reel e stories in collaborazione con il profilo del Gruppo, diritti adv, report.</p></div>
+    <div class="card"><div class="logo"><img src="data:image/png;base64,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" alt="Fideuram"></div><h4>Lancio di una banca diretta</h4><p>Piano annuale full funnel per il lancio: micro-targeting territoriale con J-Hexagon per raggiungere investitori e trader, ecosistema digitale dai social all'area privata, progetti editoriali speciali e idee creative per l'awareness nei mesi di lancio, lead generation lungo tutto l'anno.</p></div>
+    <div class="card"><div class="logo"><img src="data:image/png;base64,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" alt="Intesa Sanpaolo Casa"></div><h4>Acquisizione su base territoriale</h4><p>Promozione di un nuovo intervento immobiliare a Brescia: audience costruita integrando i dati delle piattaforme con i dati territoriali di J-Hexagon, attivando solo i raggi di 3 km a maggior potenziale. Risultato: <b>3,80 € per lead</b> con meno del 15% di lead rifiutati.</p></div>
+  </div>
+  <div class="grid3" style="margin-top:14px">
+    <div class="card"><div class="logo"><img src="data:image/png;base64,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" alt="ITA Airways" style="max-height:40px"></div><h4>Visibilità organica in un settore affollato</h4><p>Supporto SEO strategico dal 2022: audit, piano di interventi architetturali e Core Web Vitals, monitoraggio always on. <b>+144% traffico organico</b> anno su anno, tempo di caricamento ridotto del 90%.</p></div>
+    <div class="card"><div class="logo t">Luxury fashion<small>USA · riservato</small></div><h4>Il media letto per micro-aree</h4><p>Analisi di 12 mesi di Google Ads su 33.700 zip code: l'8% delle location generava il 77% delle conversioni brand. Riallocando su quelle, <b>+21% di revenue con +3% di budget</b> nel test di due mesi. Lo stesso metodo si applica alle 112 BCC.</p></div>
+    <div class="card"><div class="logo t">MatchMaker<small>Brand safety</small></div><h4>Prima di scegliere un volto</h4><p>Prima di associare il Gruppo a un creator o a un partner editoriale, analizziamo affinità di valori e pubblico, sentiment sulle fonti terze, parole chiave sensibili e storico delle collaborazioni con competitor. Per chi custodisce l'identità delle BCC, il rischio reputazionale si misura prima, non dopo.</p></div>
+  </div>
+  <h3>Cosa cambia quando le banche sono 112</h3>
+  <div class="grid3">
+    <div class="card"><h4>Il media si pianifica per BCC</h4><p>Con la pianificazione per micro-aree ogni BCC ha la sua mappa: micro-aree da 1 km intorno a sedi e filiali, pesate per propensione culturale e affinità con la banca di comunità. Stampa e radio locali, digital geo-targettizzato e affissione si allineano sulla stessa mappa, e il budget si riallocca dove risponde.</p></div>
+    <div class="card"><h4>L'evento è il media</h4><p>Le 100 mostre in filiale e i 31 incontri del Book Club sono 131 occasioni di contenuto, PR locale e fonti citabili: il piano off alimenta il GEO, e viceversa.</p></div>
+    <div class="card"><h4>Una cifra sola</h4><p>Per chi fa Corporate Identity il risultato si racconta in riconoscibilità, share of search, partecipazione delle comunità. Il CPA resta nel report, non nel titolo.</p></div>
+  </div>
+</section>
+
+<!-- KPI -->
+<section id="kpi" hidden>
+  <h2>Reportistica: cosa vedreste ogni mese</h2>
+  <p class="lead">Un solo pannello, quattro famiglie di indicatori. La visibilità nell'AI è misurata con la stessa cadenza del media, così le due letture stanno sulla stessa pagina.</p>
+  <div class="kpi">
+    <div class="card"><b>Quota di voce AI</b><span>% di risposte degli assistenti AI che citano BCC sulle domande del perimetro</span></div>
+    <div class="card"><b>Presenza AI Overview</b><span>% di ricerche con BCC tra le fonti citate (oggi 0 su 64)</span></div>
+    <div class="card"><b>Share of Search</b><span>ricerche del brand BCC sul totale delle banche osservate</span></div>
+    <div class="card"><b>Copertura territoriale</b><span>% di micro-aree ad alto potenziale raggiunte per BCC e BCC con fonti locali citabili</span></div>
+  </div>
+  <div class="grid2">
+    <div class="demo">
+      <div class="eyebrow">Baseline 30/09/2026 · quota di risposte AI che citano il brand</div>
+      <h4 style="margin:0">Quota di voce nelle risposte AI · 30 domande su banca, territorio e cultura</h4>
+      <div class="bars">
+        <div class="bar"><span>Gruppo BCC Iccrea</span><div class="track"><div class="fill" style="width:60%"></div></div><b>60%</b></div>
+        <div class="bar"><span>Cassa Centrale Banca</span><div class="track"><div class="fill c" style="width:48%"></div></div><b>48%</b></div>
+        <div class="bar"><span>Iccrea Banca (capogruppo)</span><div class="track"><div class="fill c" style="width:33%"></div></div><b>33%</b></div>
+      </div>
+      <p class="note">Ogni mese la stessa lettura, con Intesa Sanpaolo, UniCredit, Banca Etica e le fondazioni nel confronto.</p>
+    </div>
+    <div class="card">
+      <h4>Le quattro famiglie</h4>
+      <div class="tscroll" style="border:0"><table>
+        <thead><tr><th>Famiglia</th><th>Indicatori</th><th>Fonte</th></tr></thead>
+        <tbody>
+          <tr><td><b>Brand</b></td><td>awareness, considerazione, share of search, sentiment</td><td>brand tracking, Google Trends, social listening</td></tr>
+          <tr><td><b>Media</b></td><td>reach netta on+off, GRP locali, frequenza, performance per micro-area e per BCC</td><td>post-valutazioni, ad server, J-Hexagon, GA4</td></tr>
+          <tr><td><b>Visibilità AI</b></td><td>quota di voce negli assistenti AI, citazioni per fonte, presenza in AI Overview, posizione organica</td><td>JHorizon, OneSearch</td></tr>
+          <tr><td><b>Territorio</b></td><td>eventi, presenze, copertura stampa locale, BCC attive</td><td>bccartecultura.it, rassegna, CRM BCC</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+</section>
+
+<footer><span>Jakala · Business Line Activation</span><span>Aggiornato 30/09/2026</span></footer>
+</div>
+<div class="toast" id="toast" role="status">Copiato</div>
+
+<script>
+const KW=[
+["bcc arte e cultura", "Brand & progetto", "Navigazionale", "Branded", "Alta", "Nome del programma", "N", "M"],
+["bcc arte&cultura", "Brand & progetto", "Navigazionale", "Branded", "Alta", "Variante grafica ufficiale", "N", "M"],
+["bccartecultura", "Brand & progetto", "Navigazionale", "Branded", "Media", "Ricerca del portale", "N", "M"],
+["museo diffuso bcc", "Brand & progetto", "Informazionale", "Branded", "Alta", "Concetto lanciato nel 2024", "N", "M"],
+["futuri emergenti italiani", "Brand & progetto", "Informazionale", "Branded", "Alta", "Catalogo e mostre 2026", "N", "M"],
+["bcc book club", "Brand & progetto", "Navigazionale", "Branded", "Media", "Programma lettura", "N", "M"],
+["gruppo bcc iccrea cultura", "Brand & progetto", "Informazionale", "Branded", "Media", "Ricerca di reputazione", "N", "M"],
+["collezione d'arte bcc", "Brand & progetto", "Informazionale", "Branded", "Media", "Patrimonio delle banche", "N", "M"],
+["voucher libri bcc", "Brand & progetto", "Transazionale", "Branded", "Media", "Meccanica del Book Club", "N", "Y"],
+["banche che sostengono l'arte", "Banca & mecenatismo", "Informazionale", "Unbranded", "Alta", "La domanda centrale del posizionamento", "N", "N"],
+["banca mecenate italia", "Banca & mecenatismo", "Informazionale", "Unbranded", "Alta", "Spazio oggi di Intesa/UniCredit", "N", "N"],
+["banche e cultura", "Banca & mecenatismo", "Informazionale", "Unbranded", "Alta", "Ricerca ampia, AI Overview frequente", "N", "M"],
+["sponsorizzazione culturale banca", "Banca & mecenatismo", "Informazionale", "Unbranded", "Media", "Lato istituzioni/enti", "N", "Y"],
+["banca sponsor mostre", "Banca & mecenatismo", "Informazionale", "Unbranded", "Media", "Chi finanzia le mostre", "N", "Y"],
+["art bonus banche", "Banca & mecenatismo", "Informazionale", "Unbranded", "Media", "Meccanismo fiscale, alta autorevolezza", "Y", "Y"],
+["banca finanzia restauro opere d'arte", "Banca & mecenatismo", "Informazionale", "Unbranded", "Media", "Restauri BCC come prova", "Y", "Y"],
+["fondazioni bancarie arte", "Banca & mecenatismo", "Informazionale", "Unbranded", "Media", "Concorrente indiretto", "Y", "Y"],
+["banca collezione d'arte visitabile", "Banca & mecenatismo", "Informazionale", "Unbranded", "Alta", "Museo diffuso vs Gallerie d'Italia", "N", "Y"],
+["esg cultura banche", "Banca & mecenatismo", "Informazionale", "Unbranded", "Alta", "Claim ESG+", "N", "Y"],
+["responsabilità sociale banca cultura", "Banca & mecenatismo", "Informazionale", "Unbranded", "Media", "Responsabilità sociale", "N", "Y"],
+["banca di comunità", "Territorio & comunità", "Informazionale", "Unbranded", "Alta", "Naming usato dalle BCC", "N", "Y"],
+["banca del territorio", "Territorio & comunità", "Informazionale", "Unbranded", "Alta", "Identità BCC", "N", "Y"],
+["banca locale vicino a me", "Territorio & comunità", "Locale", "Unbranded", "Alta", "Ricerca locale, forte negli assistenti AI", "C", "N"],
+["bcc vicino a me", "Territorio & comunità", "Locale", "Semi-branded", "Alta", "112 entità locali", "N", "M"],
+["banca di credito cooperativo cos'è", "Territorio & comunità", "Informazionale", "Semi-branded", "Alta", "Definizione, AI Overview", "N", "M"],
+["banca che reinveste sul territorio", "Territorio & comunità", "Informazionale", "Unbranded", "Media", "Messaggio campagna 2022", "N", "M"],
+["banca mutualistica", "Territorio & comunità", "Informazionale", "Unbranded", "Media", "Termine istituzionale", "N", "Y"],
+["banca cooperativa vantaggi", "Territorio & comunità", "Informazionale", "Unbranded", "Media", "Confronto con Cassa Centrale", "N", "Y"],
+["diventare socio bcc", "Territorio & comunità", "Transazionale", "Semi-branded", "Media", "900 mila soci, leva comunità", "N", "Y"],
+["credito cooperativo e territorio", "Territorio & comunità", "Informazionale", "Unbranded", "Bassa", "Ricerca di studio", "N", "M"],
+["artisti emergenti under 35 italia", "Arte emergente", "Informazionale", "Unbranded", "Alta", "Cuore di Futuri Emergenti", "N", "M"],
+["mostra artisti emergenti 2026", "Arte emergente", "Informazionale", "Unbranded", "Alta", "Stagionale apr–dic 2026", "N", "Y"],
+["giovani artisti italiani mostra", "Arte emergente", "Informazionale", "Unbranded", "Media", "Variante", "N", "Y"],
+["premio arte emergente italia", "Arte emergente", "Informazionale", "Unbranded", "Media", "Spazio di premi e residenze", "N", "Y"],
+["arte contemporanea emergente italia", "Arte emergente", "Informazionale", "Unbranded", "Media", "Ricerca ampia", "Y", "M"],
+["mostre gratuite vicino a me", "Arte emergente", "Locale", "Unbranded", "Alta", "Le mostre in filiale sono gratuite", "N", "Y"],
+["residenze artistiche italia", "Arte emergente", "Informazionale", "Unbranded", "Bassa", "Tema adiacente", "N", "Y"],
+["mostra milano 2026", "Arte emergente", "Locale", "Unbranded", "Alta", "Declinazione locale", "Y", "Y"],
+["mostra roma 2026", "Arte emergente", "Locale", "Unbranded", "Alta", "Declinazione locale", "N", "Y"],
+["mostra bergamo 2026", "Arte emergente", "Locale", "Unbranded", "Alta", "Declinazione locale", "Y", "Y"],
+["mostra bari 2026", "Arte emergente", "Locale", "Unbranded", "Alta", "Declinazione locale", "N", "Y"],
+["gruppo di lettura vicino a me", "Lettura", "Locale", "Unbranded", "Alta", "Book Club territoriale", "N", "N"],
+["book club italia", "Lettura", "Informazionale", "Unbranded", "Media", "Termine in crescita", "N", "Y"],
+["presentazione libri vicino a me", "Lettura", "Locale", "Unbranded", "Alta", "31 eventi 2026", "N", "Y"],
+["sconto libri librerie indipendenti", "Lettura", "Transazionale", "Unbranded", "Media", "Voucher", "N", "Y"],
+["librerie indipendenti italia", "Lettura", "Informazionale", "Unbranded", "Bassa", "50 librerie partner", "N", "Y"],
+["eventi letterari 2026", "Lettura", "Informazionale", "Unbranded", "Media", "Calendario", "N", "Y"],
+["gruppo di lettura milano", "Lettura", "Locale", "Unbranded", "Alta", "Declinazione locale", "N", "Y"],
+["gruppo di lettura roma", "Lettura", "Locale", "Unbranded", "Alta", "Declinazione locale", "N", "Y"],
+["gruppo di lettura bergamo", "Lettura", "Locale", "Unbranded", "Alta", "Declinazione locale", "N", "Y"],
+["gruppo di lettura bari", "Lettura", "Locale", "Unbranded", "Alta", "Declinazione locale", "N", "Y"],
+["museo diffuso cos'è", "Restauro & patrimonio", "Informazionale", "Unbranded", "Alta", "Definizione, spesso risposta da AI Overview", "N", "Y"],
+["museo diffuso italia", "Restauro & patrimonio", "Informazionale", "Unbranded", "Alta", "Presidio del concetto", "N", "N"],
+["restauro affreschi finanziamento", "Restauro & patrimonio", "Informazionale", "Unbranded", "Media", "Restauro del Castello di Carrù", "N", "Y"],
+["patrimonio culturale borghi italiani", "Restauro & patrimonio", "Informazionale", "Unbranded", "Media", "Genius loci", "N", "Y"],
+["valorizzazione borghi italiani", "Restauro & patrimonio", "Informazionale", "Unbranded", "Media", "PNRR e territorio", "N", "Y"],
+["arte nei borghi", "Restauro & patrimonio", "Informazionale", "Unbranded", "Media", "Narrativa mostre in luoghi inaspettati", "N", "Y"],
+["palazzi storici banche visitabili", "Restauro & patrimonio", "Informazionale", "Unbranded", "Media", "Sedi BCC storiche", "N", "Y"],
+["giornate del patrimonio banche", "Restauro & patrimonio", "Informazionale", "Unbranded", "Bassa", "Eventi ABI Invito a Palazzo", "N", "Y"],
+["educazione finanziaria scuole banca", "Scuola", "Informazionale", "Unbranded", "Media", "Pilastro scuole", "N", "Y"],
+["progetti scuole arte banca", "Scuola", "Informazionale", "Unbranded", "Media", "Concorsi e laboratori", "N", "M"],
+["educazione al patrimonio culturale scuola", "Scuola", "Informazionale", "Unbranded", "Bassa", "Tema adiacente", "Y", "Y"],
+["concorso scuole banca 2026", "Scuola", "Informazionale", "Unbranded", "Bassa", "Stagionale", "N", "Y"],
+["banca etica vs bcc", "Competitor", "Informazionale", "Semi-branded", "Media", "Confronto valoriale", "N", "Y"],
+["cassa centrale banca vs iccrea", "Competitor", "Informazionale", "Semi-branded", "Media", "L'altro gruppo cooperativo", "N", "M"],
+["gallerie d'italia intesa sanpaolo", "Competitor", "Navigazionale", "Competitor", "Media", "Riferimento del museo bancario", "Y", "Y"],
+["unicredit art collection", "Competitor", "Navigazionale", "Competitor", "Bassa", "Riferimento", "N", "Y"],
+["fondazione cariplo arte", "Competitor", "Navigazionale", "Competitor", "Bassa", "Riferimento fondazioni", "N", "Y"],
+["banche più sostenibili italia", "Competitor", "Informazionale", "Unbranded", "Media", "Classifiche ESG nelle AI Overview", "N", "Y"]
+];
+const PROMPTS=[
+"Quali banche italiane sostengono l'arte e la cultura?",
+"Quale banca investe di più nella cultura dei territori italiani?",
+"Cos'è BCC Arte&Cultura e cosa fa?",
+"Cos'è un museo diffuso e ce ne sono in Italia legati a banche?",
+"Quali banche italiane hanno una collezione d'arte visitabile gratuitamente?",
+"Dove posso vedere mostre di artisti emergenti under 35 in Italia nel 2026?",
+"Quali banche sostengono i giovani artisti italiani?",
+"Quali banche finanziano restauri di opere d'arte e patrimonio locale?",
+"Quali banche organizzano gruppi di lettura o iniziative per promuovere la lettura?",
+"Esistono sconti sui libri offerti da banche ai propri clienti?",
+"Cos'è una banca di credito cooperativo e in cosa è diversa da una banca normale?",
+"Qual è la banca più legata al territorio in Italia?",
+"Quali banche reinvestono gli utili nel territorio in cui operano?",
+"Qual è il maggiore gruppo bancario cooperativo in Italia?",
+"Che differenza c'è tra Gruppo BCC Iccrea e Cassa Centrale Banca?",
+"Banca Etica o una BCC: quale è più impegnata socialmente?",
+"Cosa significa ESG+ e quali banche lo applicano?",
+"Quali banche italiane sono più impegnate nella responsabilità sociale?",
+"Quali banche sponsorizzano mostre d'arte in Italia?",
+"Come diventare socio di una banca di credito cooperativo e quali vantaggi ci sono?",
+"Quali iniziative culturali fanno le banche nei piccoli comuni?",
+"Quali banche promuovono l'arte nei borghi italiani?",
+"Quali banche fanno educazione finanziaria nelle scuole?",
+"Chi finanzia il restauro degli affreschi e dei palazzi storici nei piccoli centri?",
+"Quali banche hanno sedi in palazzi storici visitabili?",
+"Mi consigli una banca attenta alla cultura e alla comunità locale?",
+"Quali sono le migliori banche italiane per chi vuole sostenere il proprio territorio?",
+"Ci sono banche che espongono opere d'arte nelle filiali?",
+"Cosa fanno le banche cooperative per i giovani?",
+"Quali sono gli esempi di mecenatismo bancario in Italia oggi?"
+];
+const $=s=>document.querySelector(s);
+const tabs=[...document.querySelectorAll('nav.tabs button')];
+function show(id){tabs.forEach(b=>b.setAttribute('aria-selected',String(b.dataset.t===id)));document.querySelectorAll('section').forEach(s=>s.hidden=s.id!==id);}
+tabs.forEach(b=>b.addEventListener('click',()=>{show(b.dataset.t);history.replaceState(null,'','#'+b.dataset.t)}));
+const h=location.hash.replace('#','');if(tabs.some(b=>b.dataset.t===h))show(h);
+const clusters=[...new Set(KW.map(k=>k[1]))];clusters.forEach(c=>{const o=document.createElement('option');o.textContent=c;$('#kwc').append(o)});
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function pillFor(p){return p==='Alta'?'pill a':p==='Media'?'pill':'pill'}
+const ADS={Y:'<span class="st y">altri inserzionisti</span>',C:'<span class="st y">annuncio concorrente</span>',N:'<span class="st n">nessun annuncio</span>'};
+const AIO={M:'<span class="st m">BCC nominata, non citata</span>',Y:'<span class="st y">presente, senza BCC</span>',N:'<span class="st n">assente</span>'};
+let view=KW;
+function renderKW(){const q=$('#kwq').value.toLowerCase(),c=$('#kwc').value,p=$('#kwp').value,a=$('#kwa').value;
+view=KW.filter(k=>(!q||k[0].includes(q)||k[5].toLowerCase().includes(q))&&(!c||k[1]===c)&&(!p||k[4]===p)&&(!a||k[7]===a));
+$('#kwt tbody').innerHTML=view.map(k=>`<tr><td class="kw">${esc(k[0])}</td><td>${esc(k[1])}</td><td>${esc(k[2])}</td><td><span class="pill ${k[3]==='Branded'?'g':k[3]==='Competitor'?'b':''}">${esc(k[3])}</span></td><td><span class="${pillFor(k[4])}">${esc(k[4])}</span></td><td>${ADS[k[6]]||''}</td><td>${AIO[k[7]]||''}</td><td>${esc(k[5])}</td></tr>`).join('');
+$('#kwn').textContent=view.length+' / '+KW.length+' ricerche';}
+['kwq','kwc','kwp','kwa'].forEach(i=>$('#'+i).addEventListener('input',renderKW));renderKW();
+$('#pl').innerHTML=PROMPTS.map((p,i)=>`<li><i>${String(i+1).padStart(2,'0')}</i><span>${esc(p)}</span></li>`).join('');$('#pn').textContent=PROMPTS.length+' domande';
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1400)}
+function copy(txt){const done=()=>toast('Copiato');navigator.clipboard&&navigator.clipboard.writeText(txt).then(done).catch(()=>{const ta=document.createElement('textarea');ta.value=txt;document.body.append(ta);ta.select();try{document.execCommand('copy');done()}catch(e){toast('Seleziona e copia manualmente')}ta.remove()})}
+$('#kwcsv').addEventListener('click',()=>copy('keyword;cluster;intent;tipo;priorita;nota;annunci;ai_overview\n'+view.map(k=>k.map(v=>'"'+v.replace(/"/g,'""')+'"').join(';')).join('\n')));
+$('#pcopy').addEventListener('click',()=>copy(PROMPTS.join('\n')));
+</script>
+
+</body>
+</html>
